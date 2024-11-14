@@ -1,0 +1,157 @@
+/* Existing CSS */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif; /* Apply Montserrat globally */
+    background-color: #2A363F;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A363F;
+    height: 100vh;
+}
+
+.logo-container {
+    margin-right: 50px;
+    text-align: center;
+}
+
+/* Apply Montserrat with weight 700 to the title */
+.montserrat-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Apply Montserrat with weight 300 to the matrix */
+.matrix-logo {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Apply Montserrat with weight 500 to input fields */
+.montserrat-input {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 40px;
+}
+
+.input-field {
+    background-color: transparent;
+    border: 1px solid #6ED9A0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px; /* Increased padding */
+    font-size: 1.2rem; /* Increased font size */
+    color: #fff;
+    outline: none;
+    height: 50px; /* Set a specific height */
+    width: 300px; /* Set a specific width for the input fields */
+}
+
+input::placeholder {
+    color: #9da9b4;
+}
+
+.divider {
+    width: 120%; /* 140% of the parent container */
+    height: 2px; /* Thickness of the line */
+    background-color: #FFFFFF; /* Line color */
+    margin: 20px auto; /* Center the line horizontally */
+    transform: translateX(-10%); /* Shift it back to center since it's larger than the container */
+}
+
+/* New vertical line styles */
+.vertical-line {
+    width: 2px; /* Thickness of the line */
+    background-color: #FFFFFF; /* Line color */
+    height: 80%; /* Height of the line relative to the container */
+    margin: 0 20px; /* Spacing between the line and the logo/form */
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; /* Prevent the text from wrapping */
+    border: 0;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the submit button and input fields */
+    padding: 0 0 0 40px;
+}
+
+/* Adjust the spacing and alignment of the input fields */
+/* Center the login form elements and move them down */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the submit button and input fields */
+    padding: 0 0 0 40px;
+    margin-top: 50px; /* Move the whole form down */
+}
+
+/* Adjust the spacing and alignment of the input fields */
+.input-field {
+    background-color: transparent;
+    border: 1px solid #6ED9A0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    outline: none;
+    height: 50px;
+    width: 300px;
+}
+
+/* Lower the labels */
+label {
+    margin-top: 10px; /* Space between labels and the input fields */
+    margin-bottom: -5px; /* Adjust this as needed */
+}
+
+/* Style the submit button */
+.submit-button {
+    background-color: #6ED9A0;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    width: 300px;
+    margin-top: 20px; /* Space between input fields and submit button */
+    text-align: center;
+}
+
+/* Hover effect for submit button */
+.submit-button:hover {
+    background-color: #5ac08b;
+}
+
+
+
