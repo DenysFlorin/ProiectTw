@@ -1,11 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../styles/index.css'
-// import Login from './Login.tsx'
-import QuestionForm from "./mainMenu.tsx";
+import Login from './Login.tsx'
+//import QuestionForm from "./mainMenu.tsx";
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QuestionForm />
+      <GoogleOAuthProvider clientId="15675128597-staqbibejtf8m4qsenndlla407s9k036.apps.googleusercontent.com">
+        <Login />
+      </GoogleOAuthProvider>
   </StrictMode>,
 )
