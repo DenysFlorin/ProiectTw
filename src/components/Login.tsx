@@ -17,13 +17,15 @@ const Login: React.FC = () => {
 
     return (
         <div className="login-container">
-            <div className="logo-container">
-                <h1 className="montserrat-title">AlgebrAI</h1>
-                <div className="horizontal-line"></div>
-                <div className="matrix-logo">
-                    <img src={matrixLogo} alt="Matrix logo" className="matrix-image"/>
+            <div className="left-container">
+            <h1 className="montserrat-title">AlgebrAI</h1>
+                <div className="logo-container">
+                    <div className="matrix-logo">
+                        <img src={matrixLogo} alt="Matrix logo" className="matrix-image"/>
+                    </div>
                 </div>
             </div>
+            <div className="horizontal-line"></div>
             <div className="vertical-line"></div>
             <form className="login-form">
                 <label htmlFor="email" className="visually-hidden">Email</label>
