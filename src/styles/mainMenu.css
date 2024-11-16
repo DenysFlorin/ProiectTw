@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #2A363F;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .question-container {
     width: 100%;
     max-width: 1200px;
@@ -23,7 +35,7 @@
 
 .question-input {
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -37,7 +49,9 @@
     font-size: 1.2rem;
     color: #fff;
     outline: none;
-    width: 100%;
+    width: 100%; /* Make it take up full width of its container */
+    min-width: 800px; /* Set max-width to control how wide it gets */
+    margin: 0 auto; /* Ensure the input field is centered */
 }
 
 .conversation-cards {
@@ -87,7 +101,7 @@
 }
 
 .header .title {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 @media (max-width: 480px) {

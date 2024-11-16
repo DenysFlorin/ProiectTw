@@ -16,7 +16,8 @@ export const loginWithEmail = async (user: User) => {
 
         console.log("Backend response: ", res.data);
 
-        localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem('refreshToken', res.data.refreshToken);
+        localStorage.setItem('accessToken', res.data.accessToken);
         return userCredential.user;
     }
     catch (error) {
@@ -35,11 +36,28 @@ export const signUpWithEmail = async (user: User) => {
         const res = await axios.post(`${API_URL}/login/`, { idToken });
 
         console.log("Backend response: ", res.data);
-        localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem('refreshToken', res.data.refreshToken);
+        localStorage.setItem('accessToken', res.data.accessToken);
         return userCredential.user;
     }
     catch (error) {
-        console.log("Login failed:", error);
+        console.log("Signup failed:", error);
+        throw error;
+    }
+};
+
+export const refreshAccessToken = async () => {
+    try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (!refreshToken) throw new Error("No refresh token found");
+
+        const res = await axios.post(`${API_URL}/token/refresh`, { refresh: refreshToken });
+
+        localStorage.setItem('accessToken', res.data.accessToken);
+        return res.data.accessToken;
+    }
+    catch (error) {
+        console.log("Refresh token failed:", error);
         throw error;
     }
 };

@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import "../styles/Login.css"; // Import the updated CSS file
+import "../styles/Singup.css"; // Import the updated CSS file
 import matrixLogo from "../assets/matrix-logo.png";
 import googleIcon from "../assets/Google_Icons-09-512.webp";
 import { useGoogleLogin } from "@react-oauth/google";
-import { User } from "../types/User.ts"
-import { loginWithEmail} from "../services/authService.ts";
+import { User } from "../types/User.ts";
+import { signUpWithEmail } from "../services/authService.ts"; // Assuming signupWithEmail is a service method for signup
 import axios from "axios";
 
-const Login: React.FC = () => {
-    const [user, setUser] = useState<User>({active: false, firstName: "", lastName: "", email: "", password: "" });
+const Signup: React.FC = () => {
+    const [user, setUser] = useState<User>({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: ""
+    });
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -19,22 +24,22 @@ const Login: React.FC = () => {
                 console.log("Google login successful:", response);
                 const idToken = response.access_token; // Depending on the library, might need to extract differently
 
-                const res = await axios.post(`${import.meta.env.VITE_API_URL}/login/`, { idToken });
+                const res = await axios.post(`${import.meta.env.VITE_API_URL}/signup/`, { idToken });
                 console.log(res.data);
 
                 // Store token if needed
                 localStorage.setItem('authToken', res.data.token);
-                alert("Google login successful!");
+                alert("Google signup successful!");
             } catch (error) {
-                console.error('Google login failed:', error);
-                setError(new Error("Google login failed."));
+                console.error('Google signup failed:', error);
+                setError(new Error("Google signup failed."));
             } finally {
                 setIsLoading(false);
             }
         },
         onError: (error) => {
-            console.log('Google login failed:', error);
-            setError(new Error("Google login failed."));
+            console.log('Google signup failed:', error);
+            setError(new Error("Google signup failed."));
         },
     });
 
@@ -46,26 +51,26 @@ const Login: React.FC = () => {
         }));
     };
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
         setIsLoading(true);
         try {
-            await loginWithEmail(user);
-            alert("Login successful!");
+            await signUpWithEmail(user);  // Assuming signupWithEmail is the method for handling email signup
+            alert("Signup successful!");
             // Redirect or perform other actions
         } catch (error) {
-            console.error("Login error:", error);
-            setError(new Error("Login failed. Please check your credentials."));
+            console.error("Signup error:", error);
+            setError(new Error("Signup failed. Please check your credentials or try again."));
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="login-container">
+        <div className="signup-container">
             <div className="left-container">
-            <h1 className="montserrat-title">AlgebrAI</h1>
+                <h1 className="montserrat-title">AlgebrAI</h1>
                 <div className="logo-container">
                     <div className="matrix-logo">
                         <img src={matrixLogo} alt="Matrix logo" className="matrix-image"/>
@@ -74,7 +79,29 @@ const Login: React.FC = () => {
             </div>
             <div className="horizontal-line"></div>
             <div className="vertical-line"></div>
-            <form className="login-form" onSubmit={handleLogin}>
+            <form className="signup-form" onSubmit={handleSignup}>
+                <label htmlFor="firstName" className="visually-hidden">First Name</label>
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First Name:"
+                    className="input-field montserrat-input"
+                    value={user.firstName}
+                    onChange={handleInputChange}
+                    required
+                />
+                <label htmlFor="lastName" className="visually-hidden">Last Name</label>
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Last Name:"
+                    className="input-field montserrat-input"
+                    value={user.lastName}
+                    onChange={handleInputChange}
+                    required
+                />
                 <label htmlFor="email" className="visually-hidden">Email</label>
                 <input
                     type="email"
@@ -97,16 +124,15 @@ const Login: React.FC = () => {
                     required
                 />
                 <button type="submit" className="submit-button montserrat-input" disabled={isLoading}>
-                    {isLoading ? 'Logging in...' : 'Login'}
+                    {isLoading ? 'Signing up...' : 'Sign Up'}
                 </button>
                 <button type="button" onClick={() => googleLogin()} className="custom-google-login">
                     <img src={googleIcon} alt="Google logo" className="google-icon"/>
                     Continue with Google
-                </button>
-                {error && <p className="error-message">{error?.message}</p>}
+                </button>{error && <p className="error-message">{error?.message}</p>}
             </form>
         </div>
     );
 };
 
-export default Login;
+export default Signup;
