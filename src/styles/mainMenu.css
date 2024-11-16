@@ -1,53 +1,32 @@
-body {
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    background-color: #2A363F;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .question-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 1200px;
     text-align: center;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative; /* Add relative positioning */
+    position: relative;
+    padding: 20px;
+    height: 100vh;
 }
 
-.header {
-    position: fixed; /* Fixed at the top */
-    top: 20px; /* Adjusts distance from the top */
-    width: 100%;
-    text-align: center;
-    z-index: 1;
-}
-
-.title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.divider {
-    width: 60%;
-    height: 2px;
-    background-color: #FFFFFF;
-    margin: 10px auto;
-}
-
-.question-input {
-    margin-right: 800px;
-    margin-top: 20px; /* Reduced space below the header to raise the input */
-    width: 100%;
+.main-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.question-input {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .input-field {
@@ -58,6 +37,65 @@ body {
     font-size: 1.2rem;
     color: #fff;
     outline: none;
-    width: 100%; /* Full width for responsiveness */
-    max-width: 600px;
+    width: 100%;
+}
+
+.conversation-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    background-color: #3A474D;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card-description {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 1024px) {
+    .conversation-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .conversation-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .input-field {
+        font-size: 1rem;
+    }
+}
+
+.header .title {
+    font-size: 2rem;
+}
+
+@media (max-width: 480px) {
+    .header .title {
+        font-size: 1.5rem;
+    }
+
+    .input-field {
+        padding: 10px;
+    }
 }
